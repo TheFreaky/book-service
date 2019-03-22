@@ -21,7 +21,6 @@ public class BookServiceImpl implements BookService {
         this.bookRepository = bookRepository;
     }
 
-
     @Override
     public Page<BookDto> findAll(Pageable pageable) {
         Page<Book> books = bookRepository.findAll(pageable);

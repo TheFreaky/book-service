@@ -11,13 +11,14 @@ import ru.kpfu.itis.service.book.models.Book;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
+    //ToDo func in Postgres like create_book_tsvector(author, title, description)
+    //ToDo add field in book table for cache tsvector
+
     @Query(value = "SELECT * FROM public.book " +
             "WHERE setweight(to_tsvector(author), 'A') || setweight(to_tsvector(title), 'B') " +
             "|| setweight(to_tsvector(description), 'C') @@ plainto_tsquery(:query) " +
             "ORDER BY ts_rank(setweight(to_tsvector(author), 'A') || setweight(to_tsvector(title), 'B') " +
             "|| setweight(to_tsvector(description), 'C'), plainto_tsquery(:query)) DESC",
             nativeQuery = true)
-    //ToDo func in Postgres like create_book_tsvector(author, title, description)
-    //ToDo add field in book table for cache tsvector
     Page<Book> findByQuery(@Param("query") String query, Pageable pageable);
 }

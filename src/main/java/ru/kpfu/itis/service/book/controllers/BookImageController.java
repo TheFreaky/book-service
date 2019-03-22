@@ -1,6 +1,7 @@
 package ru.kpfu.itis.service.book.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +20,7 @@ public class BookImageController {
     }
 
     @PostMapping("/upload")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<BookImageDto> upload(@PathVariable Long id,
                                                @RequestParam("file") MultipartFile multipartFile) {
         return ResponseEntity.ok(bookImageServiceFacade.save(id, multipartFile));

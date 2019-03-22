@@ -33,7 +33,6 @@ public class ImageStorageAwsServiceImpl implements ImageStorageService {
         this.amazonS3Client = amazonS3Client;
     }
 
-
     @Override
     public String upload(MultipartFile multipartFile) {
         if (multipartFile == null || multipartFile.isEmpty()) {

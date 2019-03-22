@@ -47,6 +47,7 @@ public class BookController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<BookDto> create(@Valid @RequestBody BookDto book) {
         return ResponseEntity.ok(bookService.save(book));
     }
@@ -69,7 +70,6 @@ public class BookController {
     }
 
     @PostMapping(path = "/{id}/markAsRead")
-    @ResponseStatus(HttpStatus.OK)
     public void changeBookStatus(@PathVariable Long id) {
         bookService.markAsRead(id);
     }

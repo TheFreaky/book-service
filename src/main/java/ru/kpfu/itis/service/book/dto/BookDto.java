@@ -67,10 +67,4 @@ public class BookDto {
                 .imageUrl(model.getImageUrl())
                 .build();
     }
-
-    public static List<BookDto> from(List<Book> models) {
-        return models.stream()
-                .map(BookDto::from)
-                .collect(Collectors.toList());
-    }
 }
