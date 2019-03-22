@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/postgres
+    username: postgres
+    password: password
+    driverClassName: org.postgresql.Driver
+    initialization-mode: always
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+
+#AWS properties
+cloud:
+  aws:
+    region:
+      static: TEST
+    credentials:
+      accessKey: TEST KEY
+      secretKey: TEST KEY
+    stack:
+      auto: false
+    bucket:
+      name: TEST NAME
+      url: TEST URL
+
+

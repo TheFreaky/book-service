@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  book-service:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    environment:
+      - JVM_OPTS=-Xms128m -Xmx256m
+    restart: always
+
+# ToDo run script for creation custom db and user
+  db:
+    image: postgres:10
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    restart: always
